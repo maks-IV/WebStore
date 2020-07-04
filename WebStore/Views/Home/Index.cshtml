@@ -1,0 +1,23 @@
+﻿@model WebStore.ViewModels.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>List of all products</h2>
+<table class="table">
+    <tr>
+        <td>Category</td>
+        <td>Name of product</td>
+        <td>Details</td>
+        <td>Price</td>
+    </tr>
+    @foreach(var product in Model.Products)
+    {
+        <tr>
+            <td>@product.Category.Name</td>
+            <td>@product.Name</td>
+            <td>@product.Details</td>
+            <td>@product.Price</td>
+        </tr>
+    }
+</table>
