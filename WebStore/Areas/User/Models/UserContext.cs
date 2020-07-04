@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore.Areas.Seller.Models
+namespace WebStore.Areas.User.Models
 {
-    public class SellerContext : IdentityDbContext<UserSeller>
+    public class UserContext : IdentityDbContext<UserProfile>
     {
-        public SellerContext(DbContextOptions<SellerContext> options)
+        public UserContext(DbContextOptions<UserContext> options)
            : base(options)
         {
             Database.Migrate();

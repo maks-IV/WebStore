@@ -1,4 +1,4 @@
-﻿@model WebStore.Areas.Seller.ViewModels.RegisterViewModel
+﻿@model WebStore.Areas.User.ViewModels.RegisterViewModel
 @{
     ViewData["Title"] = "Registration";
 }
@@ -17,6 +17,12 @@
     <div class="form-group">
         <label asp-for="LastName">Last name</label>
         <input asp-for="LastName" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="Role">Select your role</label>
+        <select asp-for="Role" class="form-control" asp-items="ViewBag.Roles">
+            <option selected disabled>Choose your role here...</option>
+        </select>
     </div>
     <div class="form-group">
         <label asp-for="Password">Password</label>

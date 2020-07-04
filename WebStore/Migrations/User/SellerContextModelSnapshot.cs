@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebStore.Areas.Seller.Models;
+using WebStore.Areas.User.Models;
 
 namespace WebStore.Migrations.Seller
 {
-    [DbContext(typeof(SellerContext))]
-    [Migration("20200703134442_AddLastName")]
-    partial class AddLastName
+    [DbContext(typeof(UserContext))]
+    partial class SellerContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

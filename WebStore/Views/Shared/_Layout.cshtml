@@ -18,20 +18,13 @@
                 </button>
                 <div class="d-flex flex-column flex-md-row @*navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse*@">
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>*@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark"><p class="text-dark mb-0">Hello, @User.Identity.Name</p></a>
                             </li>
                             <li class="nav-item">
-                                <form method="post" asp-controller="Account" asp-action="Logout" asp-area="Seller">
-                                    @*<input type="submit" value="Sign out" class="" />*@
+                                <form method="post" asp-controller="Account" asp-action="Logout" asp-area="User">
                                     <button class="btn bg-transparent">
                                         Sign out
                                     </button>
@@ -41,10 +34,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Seller" asp-controller="Account" asp-action="Register">Sign up</a>
+                                <a class="nav-link text-dark" asp-area="User" asp-controller="Account" asp-action="Register">Sign up</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Seller" asp-controller="Account" asp-action="Login">Sign in</a>
+                                <a class="nav-link text-dark" asp-area="User" asp-controller="Account" asp-action="Login">Sign in</a>
                             </li>
                         }
                     </ul>

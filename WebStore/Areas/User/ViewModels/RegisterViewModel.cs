@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore.Areas.Seller.ViewModels
+namespace WebStore.Areas.User.ViewModels
 {
     public class RegisterViewModel
     {
@@ -16,6 +18,9 @@ namespace WebStore.Areas.Seller.ViewModels
 
         [Required]
         public string LastName { get; set; }
+
+        [Required]
+        public string Role { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebStore.Areas.Seller.Models;
+using WebStore.Areas.User.Models;
 using WebStore.Models;
 
 namespace WebStore
@@ -31,11 +31,11 @@ namespace WebStore
 
             services.AddDbContext<ProductContext>(options =>
                 options.UseSqlServer(connection))
-                .AddDbContext<SellerContext>(options =>
+                .AddDbContext<UserContext>(options =>
                 options.UseSqlServer(connection));
 
-            services.AddIdentity<UserSeller, IdentityRole>()
-                .AddEntityFrameworkStores<SellerContext>();
+            services.AddIdentity<UserProfile, IdentityRole>()
+                .AddEntityFrameworkStores<UserContext>();
 
             services.AddControllersWithViews();
         }
@@ -64,7 +64,7 @@ namespace WebStore
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "Seller",
+                    name: "User",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",

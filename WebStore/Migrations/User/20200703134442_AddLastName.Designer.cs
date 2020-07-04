@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebStore.Areas.Seller.Models;
+using WebStore.Areas.User.Models;
 
 namespace WebStore.Migrations.Seller
 {
-    [DbContext(typeof(SellerContext))]
-    [Migration("20200703125321_Initial")]
-    partial class Initial
+    [DbContext(typeof(UserContext))]
+    [Migration("20200703134442_AddLastName")]
+    partial class AddLastName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -170,6 +170,9 @@ namespace WebStore.Migrations.Seller
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

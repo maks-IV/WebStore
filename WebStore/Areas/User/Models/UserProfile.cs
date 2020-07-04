@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore.Areas.Seller.Models
+namespace WebStore.Areas.User.Models
 {
-    public class UserSeller : IdentityUser
+    public class UserProfile : IdentityUser
     {
         public string LastName { get; set; }
     }

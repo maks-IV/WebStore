@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebStore.Areas.Seller.ViewModels
+namespace WebStore.Areas.User.ViewModels
 {
     public class LoginViewModel
     {

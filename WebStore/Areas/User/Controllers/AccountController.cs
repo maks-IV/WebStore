@@ -4,31 +4,39 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebStore.Areas.Seller.Models;
-using WebStore.Areas.Seller.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WebStore.Areas.User.Models;
+using WebStore.Areas.User.ViewModels;
 
-namespace WebStore.Areas.Seller.Controllers
+namespace WebStore.Areas.User.Controllers
 {
-    [Area("Seller")]
+    [Area("User")]
     public class AccountController : Controller
     {
-        private readonly UserManager<UserSeller> _userManager;
-        private readonly SignInManager<UserSeller> _signInManager;
-        public AccountController(UserManager<UserSeller> userManager, SignInManager<UserSeller> signInManager)
+        private readonly UserManager<UserProfile> _userManager;
+        private readonly SignInManager<UserProfile> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountController(UserManager<UserProfile> userManager, SignInManager<UserProfile> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
-        public IActionResult Register() => View();
+        public IActionResult Register()
+        {
+            ViewBag.Roles = new SelectList(_roleManager.Roles.ToList());
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if(ModelState.IsValid)
+            ViewBag.Roles = new SelectList(_roleManager.Roles.ToList());
+            if (ModelState.IsValid)
             {
-                UserSeller user = new UserSeller()
+                UserProfile user = new UserProfile()
                 {
                     Email = model.Email,
                     UserName = model.FirstName,
@@ -37,8 +45,12 @@ namespace WebStore.Areas.Seller.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home", new { Area = ""});
+                    result = await _userManager.AddToRoleAsync(user, model.Role);
+                    if(result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, false);
+                        return RedirectToAction("Index", "Home", new { Area = "" });
+                    }
                 }
                 else
                 {
@@ -63,7 +75,7 @@ namespace WebStore.Areas.Seller.Controllers
         {
             if(ModelState.IsValid)
             {
-                UserSeller user = await _userManager.FindByEmailAsync(model.Email);
+                UserProfile user = await _userManager.FindByEmailAsync(model.Email);
                 var result =
                     await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, false);
                 if(result.Succeeded)
