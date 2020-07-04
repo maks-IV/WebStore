@@ -1,0 +1,8 @@
+﻿@using WebStore.Areas.Manage.Views.Profile 
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a asp-controller="Profile" asp-action="Index" class="nav-link @ManageNavPages.ProfileNavClass(ViewContext)" id="profile">Profile</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)" id="email">Email</a></li>
+    <li class="nav-item"><a asp-controller="Profile" asp-action="ChangePassword" class="nav-link @ManageNavPages.PassswordNavClass(ViewContext)" id="change-password">Password</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data">Personal data</a></li>
+</ul>
